@@ -9,6 +9,7 @@ import pandas as pd
 import openai
 import os
 import datatable as dt
+from datetime import datetime
 
 os.chdir("F:\\UMN Data Science MS\\CSCI 5541\\Project") #change to the path with the relevant article CSVs
 data = dt.fread('TestSet_text.csv',fill=True)
@@ -26,7 +27,7 @@ def EBR(prompt):
     completion = openai.chat.completions.create(
         model="gpt-4",
         messages=[
-                {"role": "system", "content": 'You are ChatGPT4, a helpful assistant that corrects misinformation in news articles. The current date is April 29 2024.'},
+                {"role": "system", "content": 'You are ChatGPT4, a helpful assistant that corrects misinformation in news articles. The current date is: '+str(datetime.today()).split()[0]},
                 {"role": "user", "content": prompt}
         ],
         max_tokens=2000,
