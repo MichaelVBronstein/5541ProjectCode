@@ -26,10 +26,8 @@ def EBR(prompt):
     completion = openai.chat.completions.create(
         model="gpt-4",
         messages=[
-            {
-                "role": "user",
-                "content": prompt,
-            },
+                {"role": "system", "content": 'You are ChatGPT4, a helpful assistant that corrects misinformation in news articles. The current date is April 29 2024.'},
+                {"role": "user", "content": prompt}
         ],
         max_tokens=2000,
         temperature=1,
